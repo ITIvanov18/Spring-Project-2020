@@ -28,14 +28,14 @@ for (int i = 0; i < br; i++)
   }
 }
 
-void printVector(vector<string >vArray[], int& n)    // funtion used to print all the vectors on the screen
+void printVector(vector<string >vArray[], int& n)   
 {
-	if (n > 0)                                       // checking if there are any vectors in the array
+	if (n > 0)                                     
 	{
 		for (int i = 0; i < n; i++) {
 			cout << "Elements at index "
 				<< i << ": ";
-			for (auto it = vArray[i].begin();      // printing all the vectors from the array
+			for (auto it = vArray[i].begin();     
 				it != vArray[i].end(); it++) {
 
 				
@@ -48,6 +48,29 @@ void printVector(vector<string >vArray[], int& n)    // funtion used to print al
 	{
 		cout << "There are no ranges inserted yet. " << endl << endl
 			<< "You can insert some using the |Vkarvane na mnojestva| button of the menu." << endl << endl;
+	}
+}
+
+bool checkIndex(int v1, int v2, int& n)
+{
+	if (v1 > n or v2 > n or v1 < 0 or v2 < 0 or v1 == v2) 
+	{
+		                          
+	 if (v1 == v2)
+	  {
+	    cout << "Please choose two different indexes :";
+	    cout << endl;
+	  }
+         else
+	  {
+	   cout << "Index not found. Please try again :";
+	   cout << endl;
+	  }
+	return false;
+	}
+	else
+	{
+	   return true;
 	}
 }
 
