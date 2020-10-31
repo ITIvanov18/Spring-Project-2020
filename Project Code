@@ -3,39 +3,39 @@
 #include <algorithm>
 using namespace std;
 
-void createVector(vector<string> vArray[], int& n)       
+void createVector(vector<string> vArray[], int& n)    //function used to initialize the contents of a new vector
 {
 	cout << "How much elements do you want the range to have?";
-	int VectorSize;                                      
+	int VectorSize;           //the user inputs how much elements they want the vector to have                           
 	cin >> VectorSize;
 	for (int j = 1; j <= VectorSize; j++) {
 		string element;
-		cin >> element;                               
+		cin >> element;           // initialization of the contents of a vector                  
 		vArray[n].push_back(element);
 	}
 }
 
-void addVector(vector<string> vArray[], int& n)      
+void addVector(vector<string> vArray[], int& n)      //function that adds a new vector to the array of vectors
 {
 int br;
-cout << "how many new ranges do you want to add?" << endl;                        
+cout << "how many new ranges do you want to add?" << endl;      //the user inputs how much new vectors they would like to add to the array of vectors                  
 cin >> br;
 
-for (int i = 0; i < br; i++)                         
+for (int i = 0; i < br; i++)                         //calling the createVector function of each of the new vectors
   {
 	  createVector(vArray, n);
 	  n++;
   }
 }
 
-void printVector(vector<string >vArray[], int& n)   
+void printVector(vector<string >vArray[], int& n)   //function used to print all the vectors on the screen
 {
-	if (n > 0)                                     
+	if (n > 0)                                     // checking if there are any vectors in the array
 	{
 		for (int i = 0; i < n; i++) {
 			cout << "Elements at index "
 				<< i << ": ";
-			for (auto it = vArray[i].begin();     
+			for (auto it = vArray[i].begin();     //printing all the vectors from the array
 				it != vArray[i].end(); it++) {
 
 				
@@ -53,7 +53,7 @@ void printVector(vector<string >vArray[], int& n)
 
 bool checkIndex(int v1, int v2, int& n)
 {
-	if (v1 > n or v2 > n or v1 < 0 or v2 < 0 or v1 == v2) 
+	if (v1 > n or v2 > n or v1 < 0 or v2 < 0 or v1 == v2)  //checking if the rating is a valid integer
 	{
 		                          
 	 if (v1 == v2)
@@ -74,22 +74,22 @@ bool checkIndex(int v1, int v2, int& n)
 	}
 }
 
-void Difference(vector<string >vArray[], int& n)   
+void Difference(vector<string >vArray[], int& n)   //function that finds the difference between two ranges
 {
 
 	vector<string> copy1;
 	vector<string> copy2;
 	vector<string> Difference(10);
-	vector<string>::iterator i ; 
+	vector<string>::iterator i ; //decalring interator to the vector
 	int num;
 	if (n > 0)
 	{
 		cout << "type the indexes of the ranges you want to use?";
 		int v1, v2;
-		cin >> v1 >> v2;           
-		if (checkIndex(v1, v2, n) == 0)    
+		cin >> v1 >> v2;           //the user inputs the indexes of the vectors he would like to use
+		if (checkIndex(v1, v2, n) == 0)    //checking if the  checkIndex function return false
 		{
-			do                        
+			do                        //repeating the initalization of the indexes until a valid one has been inputed
 			{
 				cin >> v1 >> v2;
 			} while (checkIndex(v1, v2, n) == 0);
@@ -99,17 +99,17 @@ void Difference(vector<string >vArray[], int& n)
 		copy2 = vArray[v2];
 
 
-		sort(copy1.begin(), copy1.end());     
-		sort(copy2.begin(), copy2.end());      
+		sort(copy1.begin(), copy1.end());     //sorting from shortest to longest
+		sort(copy2.begin(), copy2.end());     //sorting from shortest to longest
 
-		i = set_difference(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Difference.begin());  
+		i = set_difference(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Difference.begin());  //using set_difference to find the difference between two sorted ranges
 																										  //The result is an iterator pointing to the end of the range
 
 		Difference.resize(i - Difference.begin());
 
 		cout << "The difference has " << (Difference.size()) << " elements:";
 		cout << endl;
-		for (i = Difference.begin(); i != Difference.end(); ++i) 
+		for (i = Difference.begin(); i != Difference.end(); ++i) //printing all the elements stored in vector Difference
 			cout << ' ' << *i;
 		cout << endl;
 	}
@@ -120,22 +120,22 @@ void Difference(vector<string >vArray[], int& n)
 	}
 }
 
-void SymmetricDifference(vector<string >vArray[], int& n)     
+void SymmetricDifference(vector<string >vArray[], int& n)     //function that finds the symmetric difference between two ranges
 {
 
 	vector<string> copy1;
 	vector<string> copy2;
-	vector<string> Sdifference(10);
-	vector<string>::iterator i;   
+	vector<string> Sdifference(10); 
+	vector<string>::iterator i;   //declaring iterator to the vector
 	if (n > 0)
 	{
 		cout << "type the indexes of the ranges you want to use?";
 		int v1, v2;
-		cin >> v1 >> v2;     
+		cin >> v1 >> v2;     //the user inputs the indexes of the vectors he would like to use
 
-		if (checkIndex(v1, v2, n) == 0)  
+		if (checkIndex(v1, v2, n) == 0)  //checking if the  checkIndex function return false
 		{
-			do                
+			do                //repeating  the initialization of the indexes until a valid one has been inputed
 			{
 				cin >> v1 >> v2;
 			} while (checkIndex(v1, v2, n) == 0);
@@ -144,16 +144,16 @@ void SymmetricDifference(vector<string >vArray[], int& n)
 		copy2 = vArray[v2];
 
 
-		sort(copy1.begin(), copy1.end());      
-		sort(copy2.begin(), copy2.end());        
+		sort(copy1.begin(), copy1.end());      //sorting from shortest to longest
+		sort(copy2.begin(), copy2.end());      //sorting from shortest to longest
 
-		i = set_symmetric_difference(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Sdifference.begin());    
+		i = set_symmetric_difference(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Sdifference.begin());   //using set_symmetric_difference to find the symmetric difference between two sorted ranges 
 																														   //The result is an iterator pointing to the end of the range
 		Sdifference.resize(i - Sdifference.begin());
 
 		cout << "The symmetric difference has " << (Sdifference.size()) << " elements:";
 		cout << endl;
-		for (i = Sdifference.begin(); i != Sdifference.end(); ++i)   
+		for (i = Sdifference.begin(); i != Sdifference.end(); ++i)   //printing all the elements stored in vector Sdifference
 			cout << ' ' << *i;
 		cout << endl;
 	}
@@ -164,20 +164,20 @@ void SymmetricDifference(vector<string >vArray[], int& n)
 	}
 }
 
-void Intersection(vector<string >vArray[], int& n)    
+void Intersection(vector<string >vArray[], int& n)    //function that finds the Intersection  between two ranges
 {
 	vector<string> copy1;
 	vector<string> copy2;
 	vector<string> Intersection(10);
-	vector<string>::iterator i;                    
+	vector<string>::iterator i;                    //decalring iterator to the vector
 	if (n > 0)
 	{
 		cout << "type the indexes of the ranges you want to use?";
 		int v1, v2;
-		cin >> v1 >> v2;      
-		if (checkIndex(v1, v2, n) == 0)          
+		cin >> v1 >> v2;      //the user inputs the indexes of the vectors he would like to use
+		if (checkIndex(v1, v2, n) == 0)          //checking if the checkIndex function return false
 		{
-			do                       
+			do                       //repeating the initalizaion of the indexes until  a valid one has been inputed
 			{
 				cin >> v1 >> v2;
 			} while (checkIndex(v1, v2, n) == 0);
@@ -186,15 +186,15 @@ void Intersection(vector<string >vArray[], int& n)
 		copy1 = vArray[v1];
 		copy2 = vArray[v2];
 
-		sort(copy1.begin(), copy1.end());  
-		sort(copy2.begin(), copy2.end());    
+		sort(copy1.begin(), copy1.end());   //sorting from shortest to longest
+		sort(copy2.begin(), copy2.end());     //sorting from shortest to longest
 
-		i = set_intersection(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Intersection.begin());      
+		i = set_intersection(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Intersection.begin());      //using set_intercection to find the intercection between two sorted ranges
 																												   //The result is an iterator pointing to the end of the range
 		Intersection.resize(i - Intersection.begin());
 		cout << "The intersection has " << (Intersection.size()) << " elements:";
 		cout << endl;
-		for (i = Intersection.begin(); i != Intersection.end(); ++i)   
+		for (i = Intersection.begin(); i != Intersection.end(); ++i)   //printing all the  elements stored in vector Intersection
 			cout << ' ' << *i;
 		cout << endl;
 	}
@@ -205,20 +205,20 @@ void Intersection(vector<string >vArray[], int& n)
 	}
 }
 
-void Union(vector<string >vArray[], int& n)     
+void Union(vector<string >vArray[], int& n)     //function that finds the Union between two ranges
 {
 	vector<string> copy1;
 	vector<string> copy2;
 	vector<string> Union(10);
-	vector<string>::iterator i;     
+	vector<string>::iterator i;     //decalring iterator to the vector
 	if (n > 0)
 	{
 		cout << "type the indexes of the ranges you want to use?";
 		int v1, v2;
-		cin >> v1 >> v2;   
-		if (checkIndex(v1, v2, n) == 0)  
+		cin >> v1 >> v2;   //the user inputs the indexes of the vectors he would like to use
+		if (checkIndex(v1, v2, n) == 0)  //checking if the checkIndex function return false
 		{
-			do            
+			do            //repeating the initalization of the indexes until a valid one has been inputed
 			{
 				cin >> v1 >> v2;
 			} while (checkIndex(v1, v2, n) == 0);
@@ -226,14 +226,14 @@ void Union(vector<string >vArray[], int& n)
 		copy1 = vArray[v1];
 		copy2 = vArray[v2];
 
-		sort(copy1.begin(), copy1.end());    
-		sort(copy2.begin(), copy2.end());    
-		i = set_union(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Union.begin());       
+		sort(copy1.begin(), copy1.end());   //sorting from shortest to longest
+		sort(copy2.begin(), copy2.end());    //sorting from shortest to longest
+		i = set_union(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Union.begin());       //using set_union to find the union between two sorted ranges
 																									//The result is an iterator pointing to the end of the range
 		Union.resize(i - Union.begin());
 		cout << "The union has " << (Union.size()) << " elements:";
 		cout << endl;
-		for (i = Union.begin(); i != Union.end(); ++i)  
+		for (i = Union.begin(); i != Union.end(); ++i)  //printing all the  elements stored in vector Union
 			cout << ' ' << *i;
 	}
 	else
@@ -343,6 +343,7 @@ break;
 return true; 
 
 } 
+
 int main()
 {
 	vector<string> vArray[100];
