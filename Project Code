@@ -120,6 +120,53 @@ void Difference(vector<string >vArray[], int& n)
 	}
 }
 
+void SymmetricDifference(vector<string >vArray[], int& n)     
+{
+
+	vector<string> copy1;
+	vector<string> copy2;
+	vector<string> Sdifference(10);
+	vector<string>::iterator i;   
+	if (n > 0)
+	{
+		cout << "type the indexes of the ranges you want to use?";
+		int v1, v2;
+		cin >> v1 >> v2;     
+
+		if (checkIndex(v1, v2, n) == 0)  
+		{
+			do                
+			{
+				cin >> v1 >> v2;
+			} while (checkIndex(v1, v2, n) == 0);
+		}
+		copy1 = vArray[v1];
+		copy2 = vArray[v2];
+
+
+		sort(copy1.begin(), copy1.end());      
+		sort(copy2.begin(), copy2.end());        
+
+		i = set_symmetric_difference(copy1.begin(), copy1.end(), copy2.begin(), copy2.end(), Sdifference.begin());    
+																														   //The result is an iterator pointing to the end of the range
+		Sdifference.resize(i - Sdifference.begin());
+
+		cout << "The symmetric difference has " << (Sdifference.size()) << " elements:";
+		cout << endl;
+		for (i = Sdifference.begin(); i != Sdifference.end(); ++i)   
+			cout << ' ' << *i;
+		cout << endl;
+	}
+	else
+	{
+		cout << "There are no ranges inserted yet. " << endl << endl
+			<< "You can insert some using the |Vkarvane na mnojestva| button of the menu." << endl << endl;
+	}
+}
+
+
+
+
 int main()
 {
 	vector<string> vArray[100];
