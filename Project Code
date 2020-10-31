@@ -244,7 +244,105 @@ void Union(vector<string >vArray[], int& n)
 	cout << endl;
 }
 
+bool showMenu(vector<string> vArray[], int& n) 
 
+{ 
+
+ 
+
+int choice; 
+
+cout << " --- MAIN MENU ---" << endl; 
+
+cout << "1. Insert ranges" << endl; 
+
+cout << "2. List of ranges" << endl; 
+
+cout << "3. Union" << endl;          // main menu 
+
+cout << "4. Intersection" << endl; 
+
+cout << "5. Difference" << endl; 
+
+cout << "6. SymmetricDifference" << endl; 
+
+cout << "7. Exit the program" << endl; 
+
+ 
+
+cin >> choice; 
+
+ 
+
+switch (choice) 
+
+{ 
+
+case 1: 
+
+    addVector(vArray, n); 
+
+break; 
+
+ 
+
+case 2: 
+
+printVector(vArray, n); 
+
+break; 
+
+ 
+
+case 3: 
+
+Union(vArray, n); 
+
+break; 
+
+ 
+
+case 4: 
+
+Intersection(vArray, n); 
+
+break; 
+
+ 
+
+case 5: 
+
+Difference(vArray, n); 
+
+break; 
+
+ 
+
+case 6: 
+
+SymmetricDifference(vArray, n); 
+
+break; 
+
+case 7: 
+
+return false; 
+
+ 
+
+default: 
+
+cout << "The number you choose was not valid!" << endl << endl; 
+
+break; 
+
+} 
+
+ 
+
+return true; 
+
+} 
 int main()
 {
 	vector<string> vArray[100];
