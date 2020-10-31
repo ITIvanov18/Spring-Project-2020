@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void createVector(vector<string> vArray[], int& n)       
+{
+	cout << "How much elements do you want the range to have?";
+	int VectorSize;                                      
+	cin >> VectorSize;
+	for (int j = 1; j <= VectorSize; j++) {
+		string element;
+		cin >> element;                               
+		vArray[n].push_back(element);
+	}
+}
+
+void addVector(vector<string> vArray[], int& n)      
+{
+int br;
+cout << "how many new ranges do you want to add?" << endl;                        
+cin >> br;
+
+for (int i = 0; i < br; i++)                         
+  {
+	  createVector(vArray, n);
+	  n++;
+  }
+}
+
+int main()
+{
+	vector<string> vArray[100];
+	int n = 0;
+bool doShowMenu;
+	do
+  {
+		doShowMenu = showMenu(vArray, n);
+	}
+  while (doShowMenu);
+}
