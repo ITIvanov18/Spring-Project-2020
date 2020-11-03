@@ -30,13 +30,14 @@ for (int i = 0; i < br; i++)                         //calling the createVector 
 
 void printVector(vector<string >vArray[], int& n)   //function used to print all the vectors on the screen
 {
+   vector<string>::iterator it;
 	if (n > 0)                                     // checking if there are any vectors in the array
 	{
 		for (int i = 0; i < n; i++) {
 			cout << "Elements at index "
 				<< i << ": ";
-			for (auto it = vArray[i].begin();     //printing all the vectors from the array
-				it != vArray[i].end(); it++) {
+			for ( it = vArray[i].begin();     //printing all the vectors from the array
+				it < vArray[i].end(); it++) {
 
 				
 				cout << *it << ' ';
